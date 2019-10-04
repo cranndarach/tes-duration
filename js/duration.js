@@ -40,10 +40,6 @@ function duration() {
   let startYear = parseInt($("#start-year-input").val());
   let endEra = parseInt($("#end-era-input").val());
   let endYear = parseInt($("#end-year-input").val());
-  console.log("start era: " + typeof startEra);
-  console.log("start year: " + typeof startYear);
-  console.log("end era: " + typeof endEra);
-  console.log("end year: " + typeof endYear);
   if (!(withinRange(startEra, startYear, eraDurs) && withinRange(endEra, endYear, eraDurs))) {
     return "Bad range";
   }
@@ -94,5 +90,6 @@ function setDuration() {
 
 // Have a nice visual break.
 $(document).ready(() => {
+  setDuration();
   $(".form-control").change(setDuration);
 });
