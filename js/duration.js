@@ -1,3 +1,5 @@
+// Obsolete. Just use the script in index.html
+
 var eraDurs = {
   1: 2920,
   2: 896,
