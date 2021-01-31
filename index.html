@@ -103,8 +103,8 @@
           let duration = (eras[startEra] - startYear) + endYear;
           // Account for Third Era starting with 0.
           if (endEra === 3) {
-            console.log("third era");
-            duration++;
+            console.log("adding one for third era");
+            duration = duration + 1;
           }
           return duration;
         }
