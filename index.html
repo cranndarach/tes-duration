@@ -91,7 +91,13 @@
         }
         if (endEra - startEra === 1) {
           console.log("consecutive eras");
-          return (eras[startEra] - startYear) + endYear;
+          let duration = (eras[startEra] - startYear) + endYear;
+          // Account for Third Era starting with 0.
+          if (endEra === 3) {
+            console.log("third era");
+            duration++;
+          }
+          return duration;
         }
         console.log("non-consecutive eras");
         return _.reduce(eras, (accum, eraDur, era) => {
