@@ -17,14 +17,14 @@
         <div class="form-group" id="start">
           <input class="form-control era" type="number" name="start-era" id="start-era-input" value="1" min=1 max=4 />
           <label for="start-era-input">E</label>
-          <input class="form-control year" type="number" name="start-year" id="start-year-input" value="1" min=1 max=2920 />
+          <input class="form-control year" type="number" name="start-year" id="start-year-input" value="1" min=0 max=2920 />
         </div>
 
         <h2>End:</h2>
         <div class="form-group" id="end">
           <input class="form-control era" type="number" name="end-era" id="end-era-input" value=1 min=1 max=4 />
           <label for="end-era-input">E</label>
-          <input class="form-control year" type="number" name="end-year" id="end-year-input" value=1 min=1 max=2920 />
+          <input class="form-control year" type="number" name="end-year" id="end-year-input" value=1 min=0 max=2920 />
         </div>
       </div>
 
@@ -41,10 +41,19 @@
       };
 
       function withinRange(era, year, eras) {
+        // Make sure it's in the right eras.
         if ((era < 1) || (era > 4)) {
           return false;
-        } else if ((year < 1) || (year > eras[era])) {
+        // Make sure year is in the era.
+        } else if (year > eras[era]) {
           return false;
+        // If it's a 0-year, make sure that era had one.
+        } else if ((year === 0) && ![1, 3].includes(era)) {
+          return false;
+        // Don't allow negative years.
+        } else if (year < 0) {
+          return false;
+        // Otherwise, carry on.
         } else {
           return true;
         }
