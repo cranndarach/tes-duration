@@ -109,6 +109,9 @@
           return duration;
         }
         console.log("non-consecutive eras");
+        // Start with 1 if the Third Era is in the range (should be all cases), to account
+        // for era's zero-indexing. Cases starting with 3E 0 are already handled.
+        let initial = (_.inRange(3, startEra, endEra+1)) ? 1 : 0;
         return _.reduce(eras, (accum, eraDur, era) => {
           console.log(era);
           let eraInt = parseInt(era);
@@ -129,7 +132,7 @@
             // If it's not a relevant era, pass on the current accumulator.
             return accum;
           }
-        }, 0);
+        }, initial);
       }
 
       function setDuration() {
